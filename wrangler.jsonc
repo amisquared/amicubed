@@ -1,0 +1,20 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "amicubed",
+	"main": "./.output/server/index.mjs",
+	"compatibility_date": "2026-09-30",
+	"observability": {
+		"enabled": true
+	},
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./.output/public/"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "amicubed-content",
+			"database_id": "64461a92-256f-442e-bcfe-9ce0e93473e1"
+		}
+	]
+}

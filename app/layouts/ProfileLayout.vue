@@ -1,19 +1,19 @@
 <template>
-  <main class="page">
-    <div class="bg-image"></div>
-    <div class="subpage">
-      <div class="header">
-        <div class="profile">
+  <main class="profile-page">
+    <div class="profile-bg-image"></div>
+    <div class="profile-subpage">
+      <div class="profile-header">
+        <div class="profile-avatar">
           <slot name="profile" />
         </div>
-        <div class="header-text">
+        <div class="profile-header-text">
           <slot name="header-start" />
         </div>
-        <div class="header-image">
+        <div class="profile-header-image">
           <slot name="header-end" />
         </div>
       </div>
-      <div class="content-container">
+      <div class="profile-content">
         <slot name="content"/>
       </div>
     </div>
@@ -25,7 +25,14 @@ body {
   margin: 0;
 }
 
-.page {
+/*
+ * These classes are namespaced `profile-*` so they cannot collide with
+ * BaseLayout, which uses the same element names. Both style blocks are
+ * global, and every layout chunk is linked on every page in a production
+ * build, so unscoped duplicate class names silently cross-apply.
+ */
+
+.profile-page {
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -33,10 +40,13 @@ body {
   align-items: flex-start;
   box-sizing: border-box;
 
+  /* BaseLayout supplied this via a class-name collision. */
+  padding: 12vh 1rem 3rem;
+
   overflow: hidden;
 }
 
-.bg-image {
+.profile-bg-image {
   position: fixed;
   inset: -20px;
   z-index: 0;
@@ -48,7 +58,7 @@ body {
   filter: blur(16px);
 }
 
-.subpage {
+.profile-subpage {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -56,7 +66,7 @@ body {
   margin: 0 auto;
 }
 
-.header {
+.profile-header {
   position: relative;
   width: 100%;
   min-height: 0;
@@ -65,11 +75,11 @@ body {
   border-radius: 16px 16px 0 0;
   background: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
-  
+
   overflow: visible;
 }
 
-.profile {
+.profile-avatar {
   position: absolute;
   top: 0;
   left: 20%;
@@ -79,7 +89,7 @@ body {
   aspect-ratio: 1 / 1;
 }
 
-.profile img {
+.profile-avatar img {
   aspect-ratio: 1 / 1;
   width: 100%;
   display: block;
@@ -89,29 +99,29 @@ body {
   box-sizing: border-box;
 }
 
-.header-text {
+.profile-header-text {
   padding-top: 12px;
   padding-left: calc(20% + clamp(40px, 11vw, 60px) + clamp(0.5rem, 1.5vw, 1rem));
   min-height: clamp(80px, 22vw, 120px);
 }
 
-.header-text ::slotted(*) {
+.profile-header-text ::slotted(*) {
   margin: 0;
 }
 
-.header-image {
+.profile-header-image {
   position: absolute;
   top: 12px;
   left: calc(20% + clamp(40px, 11vw, 60px) + clamp(-0.5rem, -1vw, -0.25rem));
 }
 
-.header-image ::slotted(*) {
+.profile-header-image ::slotted(*) {
   width: clamp(140px, 30vw, 200px);
   height: auto;
   display: block;
 }
 
-.content-container {
+.profile-content {
   width: 100%;
   box-sizing: border-box;
   min-height: 50vh;
@@ -127,81 +137,81 @@ body {
 }
 
 @media (min-width: 768px) {
-  .page {
+  .profile-page {
     padding: 15vh 2rem 4rem;
   }
 
-  .subpage {
+  .profile-subpage {
     max-width: 600px;
   }
 
-  .header {
+  .profile-header {
     padding: 0 2rem 0.5rem;
   }
 
-  .profile {
+  .profile-avatar {
     width: clamp(100px, 18vw, 140px);
     left: 20%;
     transform: translate(-50%, -50%);
     top: 0;
   }
 
-  .header-text {
+  .profile-header-text {
     padding-top: 12px;
     min-height: clamp(100px, 18vw, 140px);
     padding-left: calc(20% + clamp(50px, 9vw, 70px) + clamp(0.75rem, 2vw, 1.25rem));
   }
 
-  .header-image {
+  .profile-header-image {
     top: 12px;
     left: calc(20% + clamp(50px, 9vw, 70px) + clamp(-0.5rem, -1vw, -0.25rem));
   }
 
-  .header-image ::slotted(*) {
+  .profile-header-image ::slotted(*) {
     width: clamp(180px, 25vw, 250px);
   }
 
-  .content-container {
+  .profile-content {
     padding: 1.5rem 3rem 3rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .page {
+  .profile-page {
     padding: 20vh 2rem 4rem;
   }
 
-  .subpage {
+  .profile-subpage {
     max-width: 500px;
   }
 
-  .header {
+  .profile-header {
     padding: 0 2rem -1rem;
   }
 
-  .profile {
+  .profile-avatar {
     width: clamp(110px, 15vw, 150px);
     left: 20%;
     top: 0;
     transform: translate(-50%, -50%);
   }
 
-  .header-text {
+  .profile-header-text {
     padding-top: 12px;
     min-height: 150px;
     padding-left: calc(20% + 75px + 1rem);
   }
 
-  .header-image {
+  .profile-header-image {
     top: 12px;
     left: calc(20% + 75px - 0.5rem);
   }
 
-  .header-image ::slotted(*) {
+  .profile-header-image ::slotted(*) {
     width: 250px;
   }
 
-  .content-container {
+  .profile-content {
     padding: 1rem 4rem 4rem;
   }
 }
