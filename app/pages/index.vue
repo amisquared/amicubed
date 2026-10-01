@@ -65,7 +65,7 @@ useJsonLd({
       <br>
       <h2>Some information: </h2>
       <h3>This website also acts as a connectivity check!</h3>
-      <p>See <a href="/generate_210">/generate_210</a></p>
+      <p>See <a href="/generate_204">/generate_204</a></p>
       <h3>RSS feed? In the big 2026?</h3>
       <p>Yes. <a href="/rss.xml">/rss.xml</a></p>
 
